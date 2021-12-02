@@ -1,24 +1,37 @@
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, useEffect } from 'react-redux';
+import OrderItem from '../OrderItem/OrderItem.jsx';
 
-function GetOrder() {
+function GetOrders() {
 
     const dispatch = useDispatch();
 
-    const order = useSelector((store) => store.order);
-
+    const orders = useSelector((store) => store.orders);
+    // create function to create order list to render to DOM
+    // iterate through orders array and return each item in table row
     axios({
         method: 'GET',
         url: '/api/order'
     })
         .then((res) => {
-        const orderFromDatabase = res.data;
-        console.log('in GET order route', orderFromDatabase);
-        dispatch({
-            type: 'GET_ORDER',
-            payload: orderFromDatabase
-        })
+            const ordersFromDatabase = res.data;
+            console.log('in GET orders route', ordersFromDatabase);
+            dispatch({
+                type: 'GET_ORDER',
+                payload: ordersFromDatabase
+            })
     })
+    return (
+        <div>
+            <table>
+                <tbody>
+                    {orders.map((order) => {
+                        return <OrderItem order={order} />; 
+                    })}
+                </tbody>
+            </table>
+        </div>
+    )
 };
 
-export default GetOrder;
+export default GetOrders;

@@ -6,11 +6,11 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import { Provider } from 'react-redux';
 
-// create order redux
-const order = (state = [], action) => {
+// create orders redux
+const orders = (state = [], action) => {
     switch (action.type) {
         case 'GET_ORDER':
-            console.log('in order redux', action.payload)
+            console.log('in orders redux', action.payload)
             return action.payload
         default:
             return state
@@ -21,7 +21,7 @@ const order = (state = [], action) => {
 // create store
 const reduxStore = createStore(
     combineReducers({
-        order
+        orders
     }),
     applyMiddleware(logger)
 );
