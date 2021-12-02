@@ -1,20 +1,22 @@
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function GetOrder() {
 
     const dispatch = useDispatch();
+
+    const order = useSelector((store) => store.order);
 
     axios({
         method: 'GET',
         url: '/api/order'
     })
         .then((res) => {
-        const order = res.data;
-        console.log('in GET order route', order);
+        const orderFromDatabase = res.data;
+        console.log('in GET order route', orderFromDatabase);
         dispatch({
             type: 'GET_ORDER',
-            payload: order
+            payload: orderFromDatabase
         })
     })
 };
