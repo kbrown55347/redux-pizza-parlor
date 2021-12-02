@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import './App.css';
+import GetPizzaList from '../GetPizzaList/GetPizzaList';
 
 function App() {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ function getPizza (){
     url: '/api/pizza'
   }).then((response)=>{ 
     dispatch({
-      Type:'GET_PIZZA',
+      type:'GET_PIZZA',
       payload:response.data
     })
 
@@ -32,6 +33,7 @@ function getPizza (){
   
       <img src='images/pizza_photo.png' />
       <p>Pizza is great.</p>
+      <GetPizzaList/>
   
     </div>
   );

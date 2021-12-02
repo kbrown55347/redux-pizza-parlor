@@ -8,9 +8,21 @@ import logger from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
+//This will be the GET_PIZZA reducer:
+const getPizzaReducer = (state = [], action) =>{
+    if (action.type === 'GET_PIZZA'){
+        console.log(action);
+        return action.payload;
+    }
+    return state;
+}
 
+
+
+//This is the Store for the reducers 
 const storeInstance = createStore(
     combineReducers({
+        getPizzaReducer
       
     }),
     applyMiddleware(logger),
