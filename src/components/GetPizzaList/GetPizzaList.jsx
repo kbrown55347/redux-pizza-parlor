@@ -1,20 +1,19 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import GetPizzaItem from '../GetPizzaItem/GetPizzaItem'
 
 function GetPizzaList (){
     const pizzaList = useSelector(store => store.getPizzaReducer)
     return(
+        <>
         <section>
-            <ul>
-                {pizzaList.map((pizza, index) =>
-                    <li key={index}> 
-                    {pizza.name} 
-                    {pizza.description}
-                    {pizza.price}
-                    {pizza.image_path} </li>
-                )}
-            </ul>
+            <div>
+                
+                {pizzaList.map((pizza, index) =>{
+                    return <GetPizzaItem key={index} pizza={pizza}/>
+                })}
+            </div>
         </section>
-
+</>
     )
 }
 
