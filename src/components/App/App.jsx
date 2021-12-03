@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 
+import GetOrders from './GetOrder/GetOrder.jsx'
+
 function App() {
 
   return (
@@ -12,6 +14,7 @@ function App() {
   
       <img src='images/pizza_photo.png' />
       <p>Pizza is great.</p>
+      <GetOrders />
   
     </div>
   );
