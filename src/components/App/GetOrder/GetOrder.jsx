@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { useDispatch, useSelector, useEffect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 import OrderItem from '../OrderItem/OrderItem.jsx';
 
 function GetOrders() {
@@ -9,6 +10,13 @@ function GetOrders() {
     const orders = useSelector((store) => store.orders);
     // create function to create order list to render to DOM
     // iterate through orders array and return each item in table row
+
+    useEffect(() => {
+        // console.log('in useEffect')
+        getOrdersFromDatabase();
+    }, []);
+    
+    const getOrdersFromDatabase = () => {
     axios({
         method: 'GET',
         url: '/api/order'
@@ -21,12 +29,14 @@ function GetOrders() {
                 payload: ordersFromDatabase
             })
     })
+    } // end getOrdersFromDatabase
+
     return (
         <div>
             <table>
                 <tbody>
                     {orders.map((order) => {
-                        return <OrderItem order={order} />; 
+                        return <OrderItem key={order.id} order={order} />; 
                     })}
                 </tbody>
             </table>

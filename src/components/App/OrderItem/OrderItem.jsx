@@ -1,7 +1,7 @@
 function OrderItem({order}) {
 
     return (
-        <tr>
+        <tr key={order.id}>
             <td>{order.customer_name}</td>
             <td>{order.time}</td>
             <td>{order.type}</td>
