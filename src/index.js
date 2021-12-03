@@ -16,6 +16,9 @@ const getPizzaReducer = (state = [], action) =>{
     }
     return state;
 }
+
+
+// this orders reducer is for the database
 const orders = (state = [], action) => {
     switch (action.type) {
         case 'GET_ORDER':
@@ -25,6 +28,18 @@ const orders = (state = [], action) => {
             return state
     }
 }
+const addRemovePizza = (state = [], action) =>{
+    switch (action.type) {
+        case 'ADD_TO_ORDER':
+            return action.payload
+        case 'REMOVE_ORDER':
+            return action.payload
+        default:
+            return state 
+        
+    }
+};
+
 
 const addRemovePizza = (state = [], action) => {
     console.log('action', action.payload);

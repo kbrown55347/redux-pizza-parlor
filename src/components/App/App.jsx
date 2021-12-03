@@ -12,6 +12,22 @@ import Home from '../Home/Home';
 function App() {
   const dispatch = useDispatch();
 
+
+function getPizza (){
+  axios ({
+    method: 'GET',
+    url: '/api/pizza'
+  }).then((response)=>{ 
+    dispatch({
+      type:'GET_PIZZA',
+      payload:response.data
+    })
+    
+  }).catch((error)=>{
+    console.log('error IN GET', error);
+  });
+};
+
   useEffect(() => {
     getPizza();
   }, [])
@@ -31,6 +47,9 @@ function App() {
     });
   };
 
+
+
+
   return (
     <div className='App'>
       <Router>
@@ -41,6 +60,7 @@ function App() {
           <Link to="/">Home</Link>|
           <Link to="/pizza">Pizza</Link>|
           <Link to="/checkout">Checkout</Link>|
+
           <Link to="/customerInfo">Customer Info</Link>
         </div>
         <Route exact path="/">
