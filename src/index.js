@@ -16,16 +16,24 @@ const getPizzaReducer = (state = [], action) =>{
     }
     return state;
 }
-
-
+const orders = (state = [], action) => {
+    switch (action.type) {
+        case 'GET_ORDER':
+            console.log('in orders redux', action.payload)
+            return action.payload
+        default:
+            return state
+    }
+}
 
 //This is the Store for the reducers 
 const storeInstance = createStore(
     combineReducers({
-        getPizzaReducer
-      
+        getPizzaReducer,
+        orders
     }),
     applyMiddleware(logger),
 );
 
 ReactDOM.render(<Provider store = {storeInstance}><App /></Provider>, document.getElementById('root'));
+

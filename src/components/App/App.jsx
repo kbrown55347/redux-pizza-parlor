@@ -4,6 +4,8 @@ import axios from 'axios';
 import './App.css';
 import GetPizzaList from '../GetPizzaList/GetPizzaList';
 
+import GetOrders from './GetOrder/GetOrder.jsx'
+
 function App() {
   const dispatch = useDispatch();
 useEffect(()=>{
@@ -34,6 +36,7 @@ function getPizza (){
       <img src='images/pizza_photo.png' />
       <p>Pizza is great.</p>
       <GetPizzaList/>
+      <GetOrders />
   
     </div>
   );
