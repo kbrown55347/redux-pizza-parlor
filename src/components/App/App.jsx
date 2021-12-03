@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import './App.css';
 import GetPizzaList from '../GetPizzaList/GetPizzaList';
-
+import CheckoutHome from '../CheckoutHome/CheckoutHome';
 import GetOrders from './GetOrder/GetOrder.jsx'
 
 function App() {
@@ -37,7 +37,7 @@ function getPizza (){
       <p>Pizza is great.</p>
       <GetPizzaList/>
       <GetOrders />
-  
+      <CheckoutHome />
     </div>
   );
 }
