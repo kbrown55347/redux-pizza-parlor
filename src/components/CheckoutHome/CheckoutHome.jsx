@@ -7,16 +7,22 @@ import CheckoutItem from "../CheckoutItem/CheckoutItem";
 function CheckoutHome() {
     // call the order holder reducer that has the stored information
     // change names when order reducer is named IMPORTANT
-    // const orderReducer = useSelector((store) => store.orderReducer);
+    const addRemovePizza = useSelector((store) => store.addRemovePizza);
+
     const history = useHistory();
-    
-    const testOrder = {
-        customer_name: "Donatello",
-        street_address: "20 W 34th St",
-        city: "New York",
-        zip: "10001",
+
+    // function to post data to the database
+    // clears the cart
+    // navigates back to pizza page
+    const newOrder = {
+        customer_name: addRemovePizza.customer_name, //change values when reducer is made
+        street_address: addRemovePizza.street_address,
+        city: addRemovePizza.city,
+        zip: addRemovePizza.zip,
         total: "27.98",
-        type: "Pickup",
+        // total: addRemovePizza.total,
+        type: addRemovePizza.type,
+        // pizzas: addRemovePizza.pizzas
         pizzas: [{
             id: "1",
             quantity: "1"
@@ -25,28 +31,18 @@ function CheckoutHome() {
             quantity: "1"
         }]
     }
-    // function to post data to the database
-    // clears the cart
-    // navigates back to pizza page
     const handleCheckout = () => {
-        // const newOrder = {
-        //     customer_name: orderReducer.customer_name, //change values when reducer is made
-        //     street_address: orderReducer.street_address,
-        //     city: orderReducer.city,
-        //     zip: orderReducer.zip,
-        //     total: orderReducer.total,
-        //     type: orderReducer.type,
-        //     pizzas: orderReducer.pizzas
-        // }
+        console.log('addRemovePizza', addRemovePizza);
+        console.log('newOrder', newOrder);
         axios({
             method: 'POST',
             url: '/api/order',
-            data: testOrder
+            data: newOrder
         }).then((res) => {
-            //   dispatchEvent({
-            //       type: '',
-            //       payload: res.data
-            //   })
+            dispatchEvent({
+                type: '',
+                payload: res.data
+            })
             alert('Thank you for your order!');
             history.push('/');
         }).catch((err) => {
@@ -58,10 +54,10 @@ function CheckoutHome() {
         <div>
             <h3>Step 3: Checkout</h3>
             <div id="customerInfo">
-                <h4>For {testOrder.type}</h4>
-                <>{testOrder.customer_name}</><br />
-                <>{testOrder.street_address}</><br />
-                <>{testOrder.city}, {testOrder.zip}</>
+                <h4>For ${addRemovePizza.type}</h4>
+                <>{addRemovePizza.customer_name}</><br />
+                <>{addRemovePizza.street_address}</><br />
+                <>{addRemovePizza.city}, {addRemovePizza.zip}</>
             </div>
             <div>
                 <table>
@@ -72,14 +68,14 @@ function CheckoutHome() {
                         </tr>
                     </thead>
                     <tbody>
-                        {testOrder.pizzas.map((pizza, i) => {
-                            return <CheckoutItem key={i} pizza={pizza.id}/>
-                        })}   
+                        {newOrder.pizzas.map((pizza, i) => {
+                            return <CheckoutItem key={i} pizza={pizza.id} />
+                        })}
                     </tbody>
                 </table>
             </div>
             <div id="total-checkout">
-                <h2>Total: ${testOrder.total}</h2>
+                <h2>Total: ${newOrder.total}</h2>
                 <button onClick={handleCheckout}>CHECKOUT</button>
             </div>
         </div>

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import './App.css';
 import GetPizzaList from '../GetPizzaList/GetPizzaList';
+import CustomerInfoForm from '../Order/CustomerInfo';
 import CheckoutHome from '../CheckoutHome/CheckoutHome';
 import GetOrders from './GetOrder/GetOrder.jsx';
 import Home from '../Home/Home';
@@ -59,6 +60,8 @@ function getPizza (){
           <Link to="/">Home</Link>|
           <Link to="/pizza">Pizza</Link>|
           <Link to="/checkout">Checkout</Link>|
+
+          <Link to="/customerInfo">Customer Info</Link>
         </div>
         <Route exact path="/">
           <Home />
@@ -68,6 +71,9 @@ function getPizza (){
         </Route>
         <Route exact path="/admin">
           <GetOrders />
+        </Route>
+        <Route exact path="/customerInfo">
+          <CustomerInfoForm />
         </Route>
         <Route exact path="/checkout">
           <CheckoutHome />
