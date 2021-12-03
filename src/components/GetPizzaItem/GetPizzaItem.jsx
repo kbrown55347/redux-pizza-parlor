@@ -6,6 +6,7 @@ function GetPizzaItem({ pizza }){
             <div>{pizza.description}</div>
             <div>{pizza.price} </div>
             <img className="img"src={pizza.image_path}/>
+            <button>Remove</button>
         </div >
     );
 };
