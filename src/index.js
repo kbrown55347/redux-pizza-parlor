@@ -16,6 +16,9 @@ const getPizzaReducer = (state = [], action) =>{
     }
     return state;
 }
+
+
+// this orders reducer is for the database
 const orders = (state = [], action) => {
     switch (action.type) {
         case 'GET_ORDER':

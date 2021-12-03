@@ -40,7 +40,6 @@ function App() {
           <Link to="/">Home</Link>|
           <Link to="/pizza">Pizza</Link>|
           <Link to="/checkout">Checkout</Link>|
-          <Link to="/admin">Admin</Link>
         </div>
         <Route exact path="/">
           <Home />
