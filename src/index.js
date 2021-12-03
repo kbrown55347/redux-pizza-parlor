@@ -2,11 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
+
+//Redux
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-// create orders redux
+//This will be the GET_PIZZA reducer:
+const getPizzaReducer = (state = [], action) =>{
+    if (action.type === 'GET_PIZZA'){
+        console.log(action);
+        return action.payload;
+    }
+    return state;
+}
 const orders = (state = [], action) => {
     switch (action.type) {
         case 'GET_ORDER':
@@ -17,15 +26,14 @@ const orders = (state = [], action) => {
     }
 }
 
-
-// create store
-const reduxStore = createStore(
+//This is the Store for the reducers 
+const storeInstance = createStore(
     combineReducers({
+        getPizzaReducer,
         orders
     }),
-    applyMiddleware(logger)
+    applyMiddleware(logger),
 );
 
+ReactDOM.render(<Provider store = {storeInstance}><App /></Provider>, document.getElementById('root'));
 
-// add Provider
-ReactDOM.render(<Provider store={reduxStore}><App /></Provider>, document.getElementById('root'));
