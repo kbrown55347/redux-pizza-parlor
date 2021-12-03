@@ -26,21 +26,7 @@ function getPizza (){
     console.log('error IN GET', error);
   });
 };
-function deletePizza (id){
-  axios({
-    method: 'DELETE',
-    url: `/api/order/${id}`
-  }).then((response)=>{
-    console.log('in DELETE', response);
-    //do we need to call a reducer from here? 
-    dispatch({
-      type:'REMOVE_PIZZA',
-      payload:response.data
-    })
-  }).catch((error) => {
-    console.log('error in DELETE', error);
-  });
-}
+
 
 
   return (
